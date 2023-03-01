@@ -9,7 +9,7 @@ export const startTransferTo = (amount, accountNumber, senderUserId) => {
   return (dispatch) => {
     dispatch(setIsLoading(true));
     axios
-      .post("http://localhost:4000/api/v1/transfers", {
+      .post("https://bank-server-production.up.railway.app/api/v1/transfers", {
         amount,
         accountNumber,
         senderUserId,
@@ -43,7 +43,7 @@ export const startGetHistoryTransfer = (id) => {
   return (dispatch) => {
     dispatch(setIsLoading(true));
     axios
-      .get(`http://localhost:4000/api/v1/users/${id}/history`, getConfig())
+      .get(`https://bank-server-production.up.railway.app/api/v1/users/${id}/history`, getConfig())
       .then((resp) => {
         console.log(resp);
         dispatch(historyTransfer(resp.data.transfer));
@@ -65,7 +65,7 @@ export const startConsign = (data) => {
     dispatch(setIsLoading(true))
     const { auth } = getState()
     console.log(auth)
-    axios.post('http://localhost:4000/api/v1/transfers/upload', {
+    axios.post('https://bank-server-production.up.railway.app/api/v1/transfers/upload', {
       amount: data.amount,
       userId: auth.id
     }, getConfig())
@@ -99,7 +99,7 @@ export const startDeleteAccount = (data) => {
     dispatch(setIsLoading(true))
     const { auth } = getState()
     console.log(auth)
-    axios.patch(`http://localhost:4000/api/v1/users/close/account/${auth.id}`, {
+    axios.patch(`https://bank-server-production.up.railway.app/api/v1/users/close/account/${auth.id}`, {
       accountNumber: data.accountNumber,
       password: data.password
     }, getConfig())

@@ -8,7 +8,7 @@ export const startLogin = (accountNumber, password) => {
   return (dispatch) => {
     dispatch(setIsLoading(true));
     axios
-      .post("http://localhost:4000/api/v1/users/login", {
+      .post("https://bank-server-production.up.railway.app/api/v1/users/login", {
         accountNumber,
         password,
       })
@@ -45,7 +45,7 @@ export const startRegister = (name, password) => {
   return (dispatch) => {
     dispatch(setIsLoading(true));
     axios
-      .post("http://localhost:4000/api/v1/users/signup", { name, password })
+      .post("https://bank-server-production.up.railway.app/api/v1/users/signup", { name, password })
       .then((resp) => {
         localStorage.setItem("token", resp.data.token);
         dispatch(
@@ -80,7 +80,7 @@ export const startChecking = () => {
     dispatch(setIsLoading(true));
     axios
       .get(
-        "http://localhost:4000/api/v1/users/renew",
+        "https://bank-server-production.up.railway.app/api/v1/users/renew",
         getConfig()
       )
       .then((resp) => {
